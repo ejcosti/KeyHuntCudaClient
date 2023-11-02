@@ -398,17 +398,10 @@ int main(int argc, char** argv)
 		{
 			address = ops[0];
 			if (coinType == COIN_BTC) {
-				if (address.length() < 30 || address[0] != '1') {
-					printf("Error: %s\n", "Invalid address, must have Bitcoin P2PKH address or Ethereum address");
-					usage();
-					return -1;
-				}
-				else {
-					if (DecodeBase58(address, hashORxpoint)) {
-						hashORxpoint.erase(hashORxpoint.begin() + 0);
-						hashORxpoint.erase(hashORxpoint.begin() + 20, hashORxpoint.begin() + 24);
-						assert(hashORxpoint.size() == 20);
-					}
+				if (DecodeBase58(address, hashORxpoint)) {
+					hashORxpoint.erase(hashORxpoint.begin() + 0);
+					hashORxpoint.erase(hashORxpoint.begin() + 20, hashORxpoint.begin() + 24);
+					assert(hashORxpoint.size() == 20);
 				}
 			}
 			else {
